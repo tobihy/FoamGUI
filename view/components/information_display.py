@@ -1,12 +1,13 @@
-from PyQt6.QtWidgets import QLabel, QVBoxLayout, QWidget
+from PyQt6.QtWidgets import QFrame, QLabel, QVBoxLayout
 
 
-class InformationDisplay(QWidget):
+class InformationDisplay(QFrame):
     def __init__(self, parent=None):
         super().__init__(parent)
+        layout = QVBoxLayout()
+
         self.label = QLabel()
         self.label.setWordWrap(True)
-        layout = QVBoxLayout()
         layout.addWidget(self.label)
         self.setLayout(layout)
 

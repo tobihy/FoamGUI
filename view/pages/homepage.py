@@ -1,6 +1,7 @@
 from PyQt6.QtCore import QPoint, QSettings, QSize, Qt
 from PyQt6.QtGui import QAction
 from PyQt6.QtWidgets import (
+    QFrame,
     QMainWindow,
     QMenu,
     QMessageBox,
@@ -122,14 +123,21 @@ class MainWindow(QMainWindow):
             self.command_handler,
             self,
         )
+        self.directory_tree.setFrameStyle(
+            QFrame.Shape.StyledPanel | QFrame.Shadow.Plain
+        )
+        self.directory_tree.setStyleSheet("QTreeView { border: 1px solid gray; }")
         self.splitter.addWidget(self.directory_tree)
 
         # Create form view of current selection
         self.form = FieldEditor(self.model, self)
+        self.form.setFrameStyle(QFrame.Shape.StyledPanel | QFrame.Shadow.Plain)
+        self.form.setStyleSheet(
+            "QScrollArea, FieldEditor, InformationDisplay { border: 1px solid gray; }"
+        )
         self.form_controller = FieldEditorController(
             self.model, self.form, self.crud_manager, self.command_handler
         )
-        # frame_layout.addWidget(self.form)
         self.splitter.addWidget(self.form)
 
         # Add slots to signals

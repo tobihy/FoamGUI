@@ -7,6 +7,7 @@ from PyQt6.QtCore import (
 )
 from PyQt6.QtWidgets import (
     QFormLayout,
+    QFrame,
     QLabel,
     QLineEdit,
     QPushButton,
@@ -29,7 +30,7 @@ from view.components.custom_combo_box import CustomComboBox
 from view.components.information_display import InformationDisplay
 
 
-class FieldEditor(QWidget):
+class FieldEditor(QFrame):
     current_selection_changed = pyqtSignal(QItemSelection)
     go_to_item = pyqtSignal(QStandardItem)
     combobox_highlighted = pyqtSignal(QStandardItem)
