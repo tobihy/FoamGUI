@@ -1,0 +1,174 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  v1812                                 |
+|   \\  /    A nd           | Web:      www.OpenFOAM.com                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    location    "system";
+    object      controlDict;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+application     interMixingPhaseChangeFoam;
+
+startFrom       latestTime;
+
+startTime       0;
+
+stopAt          endTime;
+
+endTime         0.018;
+
+deltaT          1e-06;
+
+writeControl    adjustableRunTime;
+
+writeInterval   0.001;
+
+purgeWrite      0;
+
+writeFormat     ascii;
+
+writePrecision  9;
+
+writeCompression off;
+
+timeFormat      general;
+
+timePrecision   6;
+
+runTimeModifiable yes;
+
+adjustTimeStep  yes;
+
+maxCo           0.5;
+maxAlphaCo      0.5;
+
+maxDeltaT       1;
+
+functions
+{
+
+     Forces1
+     {
+         type 		forces;
+         libs 		("libforces.so");
+
+         patches 	(bullet);
+         log 		true;
+
+         rhoName 	rho;
+         pName  	p;
+         UName  	U;
+
+         CofR 		(0 0 0);
+         liftDir 	(0 1 0);
+         dragDir 	(1 0 0);
+
+         writeControl    timeStep;
+         writeInterval   5;
+
+     }
+
+     Forces2
+     {
+         type 		forces;
+         libs 		("libforces.so");
+
+         patches 	(cone);
+         log 		true;
+
+         rhoName 	rho;
+         pName  	p;
+         UName  	U;
+
+         CofR 		(0 0 0);
+         liftDir 	(0 1 0);
+         dragDir 	(1 0 0);
+
+         writeControl    timeStep;
+         writeInterval   5;
+
+     }
+
+     Forces3
+     {
+         type 		forces;
+         libs 		("libforces.so");
+
+         patches 	(body);
+         log 		true;
+
+         rhoName 	rho;
+         pName  	p;
+         UName  	U;
+
+         CofR 		(0 0 0);
+         liftDir 	(0 1 0);
+         dragDir 	(1 0 0);
+
+         writeControl    timeStep;
+         writeInterval   5;
+
+     }
+
+     Forces4
+     {
+         type 		forces;
+         libs 		("libforces.so");
+
+         patches 	(tail);
+         log 		true;
+
+         rhoName 	rho;
+         pName  	p;
+         UName  	U;
+
+         CofR 		(0 0 0);
+         liftDir 	(0 1 0);
+         dragDir 	(1 0 0);
+
+         writeControl    timeStep;
+         writeInterval   5;
+
+     }
+
+    fieldAverage1
+    {
+        type            fieldAverage;
+        libs 		( "libfieldFunctionObjects.so" );
+        enabled         true;
+        outputControl   outputTime;
+        cleanRestart    true;
+        timeStart       0;
+        fields
+        (
+            U
+            {
+                mean        on;
+                prime2Mean  off;
+                base        time;
+            }
+
+            p_rgh
+            {
+                mean        on;
+                prime2Mean  off;
+                base        time;
+            }
+            alpha.water
+            {
+                mean        on;
+                prime2Mean  off;
+                base        time;
+            }
+        );
+        }
+}
+// ************************************************************************* //

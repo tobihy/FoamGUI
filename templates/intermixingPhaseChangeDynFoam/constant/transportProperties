@@ -1,0 +1,79 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  v2112                                 |
+|   \\  /    A nd           | Website:  www.openfoam.com                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    object      transportProperties;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+phases          (ncg vapour water);
+
+immiscibleIncompressibleThreePhaseChangeMixture Kunz;
+
+pSat            2300;   // Saturation pressure
+
+sigma           0.07;
+
+water
+{
+    transportModel  Newtonian;
+    nu              9e-07;
+    rho             1000;
+}
+
+vapour
+{
+    transportModel  Newtonian;
+    nu              4.273e-04;
+    rho             0.02308;
+}
+
+ncg
+{
+    transportModel  Newtonian;
+    nu              1.56e-05;
+    rho             1.2;
+}
+
+KunzCoeffs
+{
+    UInf            69.62;
+    tInf            0.00235; // L = 0.1635 m
+    Cc              1000;
+    Cv              30000;
+}
+
+MerkleCoeffs
+{
+    UInf            60.0;
+    tInf            0.002725;  // L = 0.1635 m
+    Cc              80;
+    Cv              1e-03;
+}
+
+SchnerrSauerCoeffs
+{
+    n               1.5e+14;
+    dNuc            2.0e-06;
+    Cc              1;
+    Cv              0.8;
+}
+
+// Surface tension coefficients
+sigma12             0.073;
+sigma13             0.073;
+
+// Diffusivity between miscible phases
+D23             3e-05;
+D32             3e-05;
+
+
+// ************************************************************************* //
