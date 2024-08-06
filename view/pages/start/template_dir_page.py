@@ -3,7 +3,7 @@ from typing import Callable
 from PyQt6.QtWidgets import QStackedWidget, QVBoxLayout, QWidget
 
 from controller.error_handler import ErrorHandler
-from env.environment import EnvironmentVariables
+from env_var.environment import EnvironmentVariables
 from util.file_manager import create_subdirectories, validate_existing_case
 from view.components.file_browser import FileBrowserWidget
 from view.pages.start.page import Page

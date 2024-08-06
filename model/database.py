@@ -2,7 +2,7 @@ from pathlib import Path
 
 from PyQt6.QtCore import QObject, pyqtSignal
 
-from env.environment import EnvironmentVariables
+from env_var.environment import EnvironmentVariables
 from model.core.foamfile import FoamFile
 from model.custom_ordered_dict import CustomOrderedDict
 

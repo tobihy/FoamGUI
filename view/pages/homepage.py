@@ -14,7 +14,7 @@ from controller.commands.command_handler import CommandHandler
 from controller.crud_manager import CRUDManager
 from controller.directory_tree_controller import DirectoryTreeController
 from controller.form_controller import FieldEditorController
-from env.environment import EnvironmentVariables
+from env_var.environment import EnvironmentVariables
 from model.database import Database
 from model.model import OrderedDictModel
 from util.constants import CaseDirMode

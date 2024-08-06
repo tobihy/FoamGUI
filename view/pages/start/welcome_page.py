@@ -3,7 +3,7 @@ from typing import Callable
 from PyQt6.QtCore import pyqtSignal
 from PyQt6.QtWidgets import QLabel, QPushButton, QStackedWidget, QVBoxLayout, QWidget
 
-from env.environment import EnvironmentVariables
+from env_var.environment import EnvironmentVariables
 from view.pages.start.page import Page
 
 

@@ -10,7 +10,7 @@ from PyQt6.QtWidgets import (
     QWidget,
 )
 
-from env.environment import EnvironmentVariables
+from env_var.environment import EnvironmentVariables
 from util.constants import CaseDirMode
 from view.components.button import CustomButton
 from view.pages.start.page import Page

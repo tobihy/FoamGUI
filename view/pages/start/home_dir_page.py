@@ -6,7 +6,7 @@ from typing import Callable
 from PyQt6.QtCore import QSettings, pyqtSignal
 from PyQt6.QtWidgets import QMessageBox, QStackedWidget, QVBoxLayout, QWidget
 
-from env.environment import EnvironmentVariables
+from env_var.environment import EnvironmentVariables
 from model.file_writer import FileWriter
 from util.exceptions import DirectoryExistsError, UnexpectedDirError
 from view.components.file_browser import FileBrowserWidget

@@ -1,4 +1,4 @@
-from env.environment import EnvironmentVariables
+from env_var.environment import EnvironmentVariables
 from model.model import OrderedDictModel
 from view.pages.homepage import MainWindow
 

@@ -3,7 +3,7 @@ from typing import Callable
 from PyQt6.QtCore import Qt
 from PyQt6.QtWidgets import QStackedWidget, QWidget
 
-from env.environment import EnvironmentVariables
+from env_var.environment import EnvironmentVariables
 
 
 class Page(QWidget):

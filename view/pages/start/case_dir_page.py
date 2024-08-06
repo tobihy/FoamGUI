@@ -6,7 +6,7 @@ from PyQt6.QtCore import pyqtSignal
 from PyQt6.QtWidgets import QMessageBox, QStackedWidget, QVBoxLayout, QWidget
 
 from controller.error_handler import ErrorHandler
-from env.environment import EnvironmentVariables
+from env_var.environment import EnvironmentVariables
 from util.constants import CaseDirMode
 from util.exceptions import DirectoryNotFoundError, MissingDirectoryError
 from util.file_manager import validate_existing_case, validate_new_case

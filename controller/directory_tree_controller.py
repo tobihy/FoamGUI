@@ -14,7 +14,7 @@ from controller.commands.command import (
 from controller.commands.command_handler import CommandHandler
 from controller.crud_manager import CRUDManager
 from controller.error_handler import ErrorHandler
-from env.environment import EnvironmentVariables
+from env_var.environment import EnvironmentVariables
 from model.custom_ordered_dict import CustomOrderedDict
 from model.model import OrderedDictModel
 from util.constants import ModelCreateType, ModelDeleteType

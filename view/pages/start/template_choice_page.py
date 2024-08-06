@@ -11,7 +11,7 @@ from PyQt6.QtWidgets import (
     QWidget,
 )
 
-from env.environment import EnvironmentVariables
+from env_var.environment import EnvironmentVariables
 from util.file_manager import create_subdirectories
 from view.pages.start.page import Page
 

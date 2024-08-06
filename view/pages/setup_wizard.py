@@ -6,7 +6,7 @@ from typing import Callable
 from PyQt6.QtCore import QSettings
 from PyQt6.QtWidgets import QLabel, QMainWindow, QMessageBox, QStackedWidget, QWidget
 
-from env.environment import EnvironmentVariables
+from env_var.environment import EnvironmentVariables
 from util.exceptions import DirectoryNotFoundError, UnexpectedDirError
 from view.pages.start.case_choice_page import CaseChoicePage
 from view.pages.start.case_dir_page import CaseDirPage

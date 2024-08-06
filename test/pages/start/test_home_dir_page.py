@@ -5,7 +5,7 @@ from unittest.mock import MagicMock
 import pytest
 from PyQt6.QtWidgets import QApplication
 
-from env.environment import EnvironmentVariables
+from env_var.environment import EnvironmentVariables
 from util.exceptions import DirectoryExistsError, UnexpectedDirError
 from view.pages.setup_wizard import HomeDirPage
 

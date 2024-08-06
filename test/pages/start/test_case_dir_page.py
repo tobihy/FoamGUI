@@ -4,7 +4,7 @@ from unittest.mock import MagicMock, patch
 import pytest
 from PyQt6.QtWidgets import QApplication, QMessageBox
 
-from env.environment import EnvironmentVariables
+from env_var.environment import EnvironmentVariables
 from util.exceptions import MissingDirectoryError, UnexpectedDirError
 from util.file_manager import validate_existing_case, validate_new_case
 from view.pages.start.case_dir_page import CaseDirPage

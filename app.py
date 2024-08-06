@@ -3,7 +3,7 @@ import sys
 from PyQt6.QtCore import QSettings
 from PyQt6.QtWidgets import QApplication
 
-from env.environment import EnvironmentVariables
+from env_var.environment import EnvironmentVariables
 from view.pages.homepage import MainWindow
 
 # Create an instance of the application
