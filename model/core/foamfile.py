@@ -160,14 +160,11 @@ class FoamFile:
             pp.Word(custom_alphanums) + pp.Suppress(pp.White()) + dictionary_object
         ) + pp.Suppress(pp.Optional(";"))
 
-        whitespace_delim = pp.White()
         list_object = (
             pp.Suppress("(")
-            + pp.ZeroOrMore(
-                pp.Group(pp.DelimitedList(list_element, delim=whitespace_delim))
-            )
+            + pp.ZeroOrMore(pp.Group(pp.DelimitedList(list_element, delim=pp.White())))
             + pp.Suppress(")")
-        ).set_parse_action(lambda toks: [List(toks.as_list())] if toks else List([]))
+        ).set_parse_action(lambda toks: [List(toks.as_list()[0])] if toks else [List()])
 
         # TODO add token identifier
         named_list_object = pp.Word(custom_alphanums) + list_object + pp.Suppress(";")

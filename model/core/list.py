@@ -2,7 +2,7 @@ from typing import List
 
 
 class List(List):
-    def __init__(self, elements: List[str]) -> None:
+    def __init__(self, elements: List[str] = []) -> None:
         super().__init__(elements)
 
     def __str__(self) -> str:
