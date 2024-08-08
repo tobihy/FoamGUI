@@ -49,6 +49,9 @@ class Database(QObject):
         -----------
             case_dir (Path): The path to the case directory.
         """
+        if not Path(case_dir).exists():
+            return
+
         for dir in map(
             lambda subdir: Path(case_dir) / subdir,
             ["0", "system", "constant"],
@@ -69,6 +72,9 @@ class Database(QObject):
             odict (CustomOrderedDict): The dictionary to be filled with directory contents.
             path (Path): The path to the current directory.
         """
+        if not Path(path).exists():
+            return
+
         subdir_dict = CustomOrderedDict()
         odict[str(path)] = subdir_dict
         for p in path.iterdir():

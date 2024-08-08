@@ -1,4 +1,5 @@
 import os
+from pathlib import Path
 from typing import Callable, List
 
 from PyQt5.QtCore import pyqtSignal
@@ -100,7 +101,6 @@ class CaseDirPage(Page):
                 self.env_var.set_case_directory(case_dir)
                 self.enter_home_page()
         except DirectoryNotFoundError as dne:
-            # QMessageBox.warning(self, "Error", dne.message)
             self.error_handler.handle_error(dne)
         except MissingDirectoryError as me:
             reply = QMessageBox.question(
