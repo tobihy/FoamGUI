@@ -1,5 +1,5 @@
 import os
-from typing import Callable, List, Union
+from typing import Callable, List
 
 from PyQt5.QtCore import pyqtSignal
 from PyQt5.QtWidgets import QMessageBox, QStackedWidget, QVBoxLayout, QWidget
@@ -107,9 +107,8 @@ class CaseDirPage(Page):
                 self,
                 "Error",
                 me.message + "\nDo you want to recreate the missing directories?",
-                Union[
-                    QMessageBox.StandardButton.Yes, QMessageBox.StandardButton.Cancel
-                ],
+                QMessageBox.StandardButtons(QMessageBox.StandardButton.Yes)
+                | QMessageBox.StandardButtons(QMessageBox.StandardButton.Cancel),
                 QMessageBox.StandardButton.Cancel,
             )
             if reply == QMessageBox.StandardButton.Yes:

@@ -4,7 +4,6 @@ from typing import Any, List, Union
 class CustomOrderedDict(dict):
 
     def __init__(self, data=None) -> None:
-        print(data)
         super().__init__(data or {})
 
     def __eq__(self, other: Any) -> bool:
