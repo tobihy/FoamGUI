@@ -2,7 +2,7 @@ from pathlib import Path
 from unittest.mock import MagicMock
 
 import pytest
-from PyQt6.QtTest import QSignalSpy
+from PyQt5.QtTest import QSignalSpy
 
 from model.custom_ordered_dict import CustomOrderedDict
 from model.model import (

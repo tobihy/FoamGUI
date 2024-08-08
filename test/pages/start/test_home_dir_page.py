@@ -3,7 +3,7 @@ from os.path import expanduser
 from unittest.mock import MagicMock
 
 import pytest
-from PyQt6.QtWidgets import QApplication
+from PyQt5.QtWidgets import QApplication
 
 from env_var.environment import EnvironmentVariables
 from util.exceptions import DirectoryExistsError, UnexpectedDirError

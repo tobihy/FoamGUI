@@ -1,11 +1,13 @@
-from PyQt6.QtCore import (
+from typing import Union
+
+from PyQt5.QtCore import (
     QItemSelection,
     QModelIndex,
     QPersistentModelIndex,
     QSize,
     pyqtSignal,
 )
-from PyQt6.QtWidgets import (
+from PyQt5.QtWidgets import (
     QFormLayout,
     QFrame,
     QLabel,
@@ -87,7 +89,9 @@ class FieldEditor(QFrame):
                 return True
         return False
 
-    def add_odict_item(self, item: OrderedDictItem | QStandardItem, form: QFormLayout):
+    def add_odict_item(
+        self, item: Union[OrderedDictItem, QStandardItem], form: QFormLayout
+    ):
         item_type = item.data(OrderedDictItem.ROLE_TYPE)
         key_field = QLineEdit(item.text())
         if item_type not in [ODictType.OTHER, ODictType.BOUNDARY_FIELD]:
@@ -125,9 +129,9 @@ class FieldEditor(QFrame):
 
     def emit_changes(
         self,
-        item: QStandardItem | OrderedDictItem | DictionaryEntryItem,
-        key_field: QLineEdit | QLabel,
-        value_field: QLineEdit | QPushButton | CustomComboBox,
+        item: Union[QStandardItem, OrderedDictItem, DictionaryEntryItem],
+        key_field: Union[QLineEdit, QLabel],
+        value_field: Union[QLineEdit, QPushButton, CustomComboBox],
     ):
         if isinstance(key_field, QLineEdit):
             key_field.editingFinished.connect(
@@ -147,7 +151,8 @@ class FieldEditor(QFrame):
             )
 
     def create_form_widget(
-        self, parent_item: QStandardItem | OrderedDictItem | DictionaryEntryItem | None
+        self,
+        parent_item: Union[QStandardItem, OrderedDictItem, DictionaryEntryItem, None],
     ):
         if not parent_item:
             return

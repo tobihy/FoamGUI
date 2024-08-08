@@ -1,7 +1,7 @@
-from typing import Callable
+from typing import Union
 
-from PyQt6.QtCore import QItemSelection, QModelIndex, QObject, pyqtSignal
-from PyQt6.QtGui import QStandardItem
+from PyQt5.QtCore import QItemSelection, QModelIndex, QObject, pyqtSignal
+from PyQt5.QtGui import QStandardItem
 
 from controller.commands.command import Command, UpdateItemCommand
 from controller.commands.command_handler import CommandHandler
@@ -55,7 +55,7 @@ class FieldEditorController(QObject):
                     self.view.update_form_widget(updated_widget)
 
     def handle_selection_change(
-        self, selected: QItemSelection, deselected: QItemSelection | None = None
+        self, selected: QItemSelection, deselected: Union[QItemSelection, None] = None
     ):
         for selection in selected.indexes():
             self.current_selection = selection

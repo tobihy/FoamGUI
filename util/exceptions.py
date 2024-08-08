@@ -1,6 +1,6 @@
 from typing import List
 
-from PyQt6.QtCore import QModelIndex
+from PyQt5.QtCore import QModelIndex
 
 
 class DictionaryError(Exception):

@@ -1,7 +1,8 @@
 from abc import ABC, abstractmethod
 from pathlib import Path
+from typing import Union
 
-from PyQt6.QtCore import QModelIndex, QPersistentModelIndex
+from PyQt5.QtCore import QModelIndex, QPersistentModelIndex
 
 from model.core.foamfile import FoamFile
 from model.custom_ordered_dict import CustomOrderedDict
@@ -72,7 +73,7 @@ class CreateItemCommand(Command):
         create_type: ModelCreateType,
         index: QModelIndex,
         key: str,
-        value: str | CustomOrderedDict,
+        value: Union[str, CustomOrderedDict],
         duplicate_allowed: bool = False,
     ) -> None:
         super().__init__(model)
@@ -121,7 +122,7 @@ class CreateChildCommand(Command):
         create_type: ModelCreateType,
         index: QModelIndex,
         key: str,
-        value: str | CustomOrderedDict,
+        value: Union[str, CustomOrderedDict],
         duplicate_allowed: bool = False,
     ) -> None:
         super().__init__(model)
@@ -322,7 +323,7 @@ class UpdateItemCommand(Command):
         return self.get_success_message(self.update_type, self.old_data, self.new_data)
 
     def get_success_message(
-        self, update_type: ModelUpdateType, old: str | None, new: str | None
+        self, update_type: ModelUpdateType, old: Union[str, None], new: Union[str, None]
     ):
         return self.SUCCESS_MESSAGE.format(
             attribute=self.UPDATE_TO_ATTRIBUTE[update_type], old=old, new=new

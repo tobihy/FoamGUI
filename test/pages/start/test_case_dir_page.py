@@ -2,7 +2,7 @@ import os
 from unittest.mock import MagicMock, patch
 
 import pytest
-from PyQt6.QtWidgets import QApplication, QMessageBox
+from PyQt5.QtWidgets import QApplication, QMessageBox
 
 from env_var.environment import EnvironmentVariables
 from util.exceptions import MissingDirectoryError, UnexpectedDirError

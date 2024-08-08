@@ -1,6 +1,6 @@
-from typing import Callable
+from typing import Callable, Union
 
-from PyQt6.QtCore import QItemSelection, QModelIndex, QObject, pyqtSignal
+from PyQt5.QtCore import QItemSelection, QModelIndex, QObject, pyqtSignal
 
 from controller.commands.command import (
     ClearDictCommand,
@@ -33,7 +33,7 @@ class DirectoryTreeController(QObject):
         env_var: EnvironmentVariables,
         crud_manager: CRUDManager,
         command_handler: CommandHandler,
-        parent: QObject | None = None,
+        parent: Union[QObject, None] = None,
     ) -> None:
         super().__init__(parent)
         self.model = model

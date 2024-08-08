@@ -1,6 +1,6 @@
-from typing import Callable
+from typing import Callable, Union
 
-from PyQt6.QtCore import QObject, pyqtSignal
+from PyQt5.QtCore import QObject, pyqtSignal
 
 from controller.commands.command import Command
 from controller.error_handler import ErrorHandler
@@ -29,7 +29,7 @@ class CommandHandler(QObject):
 
         return success_message
 
-    def undo_latest(self) -> str | None:
+    def undo_latest(self) -> Union[str, None]:
         if not self.undo_cmds:
             return
 
@@ -41,7 +41,7 @@ class CommandHandler(QObject):
 
         return success_message
 
-    def redo_latest(self) -> str | None:
+    def redo_latest(self) -> Union[str, None]:
         if not self.redo_cmds:
             return
 
@@ -53,7 +53,7 @@ class CommandHandler(QObject):
 
         return success_message
 
-    def safe_execute(self, callable: Callable) -> str | None:
+    def safe_execute(self, callable: Callable) -> Union[str, None]:
         try:
             msg = callable()
             return msg

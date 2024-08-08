@@ -6,7 +6,7 @@ Open Field Operation And Manipulation, also commonly known as OpenFOAM, is an op
 Due to the text-based nature of OpenFOAM input files, users who wish to edit existing cases or create new cases will have to edit the text files individually, which can be quite time-consuming. FoamGUI therefore helps simplify this process by providing a user-friendly GUI for the user to interact with and edit files within their cases. This alleviates the pain point of editing text files one by one, resulting in a smoother experience.
 
 ## Requirements
-- [Python 3.12.3](https://www.python.org/downloads/) installed
+- [Python 3.8.10](https://www.python.org/downloads/) installed
 
 ## Installation (via internet)
 If the deployment environment is connected to the internet, we can install the GUI by following the steps below.
@@ -26,7 +26,7 @@ python app.py
 ### Linux/Ubuntu:
 
 ```bash
-python3.12 app.py
+python3.8 app.py
 ```
 
 ## Installation (via executable)

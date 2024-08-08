@@ -1,8 +1,8 @@
-import sys
+from typing import Union
 
-from PyQt6.QtCore import QModelIndex, QObject, Qt, pyqtSignal
-from PyQt6.QtGui import QPainter, QStandardItem, QStandardItemModel
-from PyQt6.QtWidgets import (
+from PyQt5.QtCore import QModelIndex, QObject, Qt, pyqtSignal
+from PyQt5.QtGui import QPainter
+from PyQt5.QtWidgets import (
     QApplication,
     QComboBox,
     QStyle,
@@ -19,7 +19,7 @@ TYPE_CHILD = 2
 
 
 class ComboBoxItemDelegate(QStyledItemDelegate):
-    def __init__(self, parent: QObject | None = None) -> None:
+    def __init__(self, parent: Union[QObject, None] = None) -> None:
         super().__init__(parent)
 
     def paint(self, painter: QPainter, option, index: QModelIndex):
@@ -50,7 +50,7 @@ class CustomComboBox(QComboBox):
 
     def __init__(
         self,
-        parent: QWidget | None = None,
+        parent: Union[QWidget, None] = None,
     ) -> None:
         super().__init__(parent)
         self.delegate = ComboBoxItemDelegate(self)

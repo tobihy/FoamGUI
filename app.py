@@ -1,7 +1,7 @@
 import sys
 
-from PyQt6.QtCore import QSettings
-from PyQt6.QtWidgets import QApplication
+from PyQt5.QtCore import QSettings
+from PyQt5.QtWidgets import QApplication
 
 from env_var.environment import EnvironmentVariables
 from view.pages.homepage import MainWindow

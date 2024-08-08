@@ -1,3 +1,5 @@
+from typing import List
+
 import pytest
 
 from model.custom_ordered_dict import CustomOrderedDict
@@ -90,7 +92,7 @@ def complex_odict():
     )
 
 
-def get_nested_value(key_path: list[str], odict: CustomOrderedDict):
+def get_nested_value(key_path: List[str], odict: CustomOrderedDict):
     curr = odict
     for key in key_path:
         if key not in curr:

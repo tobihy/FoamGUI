@@ -3,8 +3,8 @@ from os.path import expanduser
 from pathlib import Path
 from typing import Callable
 
-from PyQt6.QtCore import QSettings, pyqtSignal
-from PyQt6.QtWidgets import QMessageBox, QStackedWidget, QVBoxLayout, QWidget
+from PyQt5.QtCore import QSettings, pyqtSignal
+from PyQt5.QtWidgets import QMessageBox, QStackedWidget, QVBoxLayout
 
 from env_var.environment import EnvironmentVariables
 from model.file_writer import FileWriter

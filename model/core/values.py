@@ -1,3 +1,5 @@
+from typing import Union
+
 from util.constants import NEWLINE, NONUNIFORM, SPACER, UNIFORM
 
 
@@ -13,7 +15,7 @@ class Scalar:
 
 
 class Tensor:
-    def __init__(self, components: list[str]) -> None:
+    def __init__(self, components: list) -> None:
         self.components = components
 
     def __str__(self) -> str:
@@ -39,7 +41,7 @@ class List:
 
 
 class Value:
-    def __init__(self, uniform: bool, value: Scalar | Tensor | List) -> None:
+    def __init__(self, uniform: bool, value: Union[Scalar, Tensor, List]) -> None:
         self.uniform = uniform
         self.value = value
 

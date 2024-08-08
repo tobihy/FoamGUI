@@ -1,8 +1,8 @@
 from pathlib import Path
-from typing import Iterable
+from typing import Iterable, List, Union
 
-from PyQt6.QtCore import QModelIndex, QObject, Qt
-from PyQt6.QtGui import QIcon, QStandardItem, QStandardItemModel
+from PyQt5.QtCore import QModelIndex, QObject, Qt
+from PyQt5.QtGui import QIcon, QStandardItem, QStandardItemModel
 
 from model.custom_ordered_dict import CustomOrderedDict
 from model.database import Database
@@ -139,7 +139,7 @@ class OrderedDictModel(QStandardItemModel):
             invisible root item.
     """
 
-    def __init__(self, db: Database, parent: QObject | None = None) -> None:
+    def __init__(self, db: Database, parent: Union[QObject, None] = None) -> None:
         super().__init__(parent)
         self.db = db
         self._data = self.db.get_dict()
@@ -162,7 +162,7 @@ class OrderedDictModel(QStandardItemModel):
     def load_model(
         self,
         data: CustomOrderedDict,
-        parent_item: QStandardItem | OrderedDictItem | None,
+        parent_item: Union[QStandardItem, OrderedDictItem, None],
     ):
         """
         Recursively loads data from a CustomOrderedDict object into the model.
@@ -191,7 +191,7 @@ class OrderedDictModel(QStandardItemModel):
                 parent_item.appendRow(item)
             else:
                 # Create a new DictionaryEntryItem for normal key-value pairs
-                if not value:
+                if value == None:
                     item = DictionaryEntryItem(
                         key, "-", is_editable=False, is_flag=True
                     )
@@ -210,7 +210,7 @@ class OrderedDictModel(QStandardItemModel):
         """
         self.load_model(self._data, self.invisibleRootItem())
 
-    def get_key_path(self, index: QModelIndex) -> list[str]:
+    def get_key_path(self, index: QModelIndex) -> List[str]:
         key_path = []
         curr_index = index
         while curr_index.isValid():
@@ -258,7 +258,7 @@ class OrderedDictModel(QStandardItemModel):
         index: QModelIndex,
         file_name: str,
         content: CustomOrderedDict = CustomOrderedDict(),
-        target_row: int | None = None,
+        target_row: Union[int, None] = None,
     ):
         """
         Inserts a new file into the model at the specified index.
@@ -316,7 +316,7 @@ class OrderedDictModel(QStandardItemModel):
         create_type: ModelCreateType,
         index: QModelIndex,
         key: str,
-        value: str | CustomOrderedDict,
+        value: Union[str, CustomOrderedDict],
         duplicate_allowed: bool = False,
     ):
         """
@@ -444,7 +444,7 @@ class OrderedDictModel(QStandardItemModel):
 
     def update_key(
         self,
-        item: DictionaryEntryItem | OrderedDictItem,
+        item: Union[DictionaryEntryItem, OrderedDictItem],
         index: QModelIndex,
         new_key: str,
     ):
@@ -519,8 +519,6 @@ class OrderedDictModel(QStandardItemModel):
             )
 
         key_path = self.get_key_path(index)[:-1]
-        print(key_path)
-        print(target_item.key)
         self._data.update_nested_value(key_path, target_item.key, data)
         self.db.update_file(key_path)
         self.load_model(data, target_item)
@@ -757,7 +755,7 @@ class ComboBoxModel(QStandardItemModel):
         super().__init__(parent)
         self.combo_data = combo_data
 
-    def load_model(self, data: dict, parent_item: QStandardItem | None = None):
+    def load_model(self, data: dict, parent_item: Union[QStandardItem, None] = None):
         """
         Recursively loads a standard item model for the `boundaryField` custom combo box from a
         dictionary.

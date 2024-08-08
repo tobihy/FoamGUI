@@ -1,3 +1,5 @@
+from typing import Union
+
 from model.core.values import Scalar, Tensor
 
 
@@ -10,7 +12,7 @@ class Element:
 
 
 class FieldElement(Element):
-    def __init__(self, name: str, value: str | Scalar | Tensor) -> None:
+    def __init__(self, name: str, value: Union[str, Scalar, Tensor]) -> None:
         super().__init__(name)
         self.value = value
 

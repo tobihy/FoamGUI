@@ -1,5 +1,4 @@
-from PyQt6.QtWidgets import QFrame, QLabel, QVBoxLayout
-
+from PyQt5.QtWidgets import QFrame, QLabel, QVBoxLayout
 
 class InformationDisplay(QFrame):
     def __init__(self, parent=None):

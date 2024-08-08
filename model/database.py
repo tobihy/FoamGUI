@@ -1,6 +1,7 @@
 from pathlib import Path
+from typing import List, Tuple
 
-from PyQt6.QtCore import QObject, pyqtSignal
+from PyQt5.QtCore import QObject, pyqtSignal
 
 from env_var.environment import EnvironmentVariables
 from model.core.foamfile import FoamFile
@@ -83,11 +84,11 @@ class Database(QObject):
     def get_dict(self):
         return self.odict
 
-    def get_foamfile(self, key_path: list[str]) -> FoamFile:
+    def get_foamfile(self, key_path: List[str]) -> FoamFile:
         file_path, file_key_seq = self.get_file_path(key_path)
         return self.foamfile_store[str(file_path)]
 
-    def get_file_path(self, key_path: list[str]) -> tuple[str, list[str]]:
+    def get_file_path(self, key_path: List[str]) -> Tuple[str, List[str]]:
         """
         Given a key path, traverses through the key path until we reach the first non-file key.
 
@@ -104,7 +105,7 @@ class Database(QObject):
             seq.append(k)
         return res, seq
 
-    def update_file(self, key_path: list[str]):
+    def update_file(self, key_path: List[str]):
         path, edited_file_seq = self.get_file_path(key_path)
         foamfile: FoamFile = self.foamfile_store[str(path)]
         content_to_write = self.odict.get_nested_value(edited_file_seq)

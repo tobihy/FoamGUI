@@ -1,6 +1,8 @@
-from PyQt6.QtCore import QModelIndex, QPoint, QSize, pyqtSignal
-from PyQt6.QtGui import QContextMenuEvent, QStandardItem
-from PyQt6.QtWidgets import QMenu, QTreeView
+from typing import Union
+
+from PyQt5.QtCore import QModelIndex, QPoint, QSize, pyqtSignal
+from PyQt5.QtGui import QContextMenuEvent, QStandardItem
+from PyQt5.QtWidgets import QMenu, QTreeView
 
 from model.model import DictionaryEntryItem, OrderedDictItem, OrderedDictModel
 from util.constants import DictMenuFlag, ODictType
@@ -30,7 +32,7 @@ class DirectoryTree(QTreeView):
 
     def __init__(
         self,
-        model: OrderedDictModel | None,
+        model: Union[OrderedDictModel, None],
         parent=None,
     ):
         super().__init__(parent)

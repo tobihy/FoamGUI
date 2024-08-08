@@ -1,9 +1,8 @@
 import os
-from enum import Enum, auto
-from typing import Callable, List, Literal
+from typing import Callable, List, Union
 
-from PyQt6.QtCore import pyqtSignal
-from PyQt6.QtWidgets import QMessageBox, QStackedWidget, QVBoxLayout, QWidget
+from PyQt5.QtCore import pyqtSignal
+from PyQt5.QtWidgets import QMessageBox, QStackedWidget, QVBoxLayout, QWidget
 
 from controller.error_handler import ErrorHandler
 from env_var.environment import EnvironmentVariables
@@ -108,7 +107,9 @@ class CaseDirPage(Page):
                 self,
                 "Error",
                 me.message + "\nDo you want to recreate the missing directories?",
-                QMessageBox.StandardButton.Yes | QMessageBox.StandardButton.Cancel,
+                Union[
+                    QMessageBox.StandardButton.Yes, QMessageBox.StandardButton.Cancel
+                ],
                 QMessageBox.StandardButton.Cancel,
             )
             if reply == QMessageBox.StandardButton.Yes:

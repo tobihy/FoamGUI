@@ -1,7 +1,10 @@
+from typing import List
+
+
 class DimensionedScalar:
     def __init__(
         self,
-        values: list[str],
+        values: List[str],
     ) -> None:
         self.values = values
         self.mass = values[0]

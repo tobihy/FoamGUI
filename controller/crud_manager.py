@@ -1,6 +1,8 @@
-from PyQt6.QtCore import QModelIndex, QObject, QPoint, Qt, pyqtSignal
-from PyQt6.QtGui import QAction
-from PyQt6.QtWidgets import (
+from typing import Union
+
+from PyQt5.QtCore import QModelIndex, QObject, QPoint, Qt, pyqtSignal
+from PyQt5.QtWidgets import (
+    QAction,
     QFormLayout,
     QHBoxLayout,
     QInputDialog,
@@ -30,7 +32,7 @@ class CRUDManager(QObject):
     add_row_below = pyqtSignal(QModelIndex, str, str)
     fields_standardised = pyqtSignal(QModelIndex)
 
-    def __init__(self, parent: QWidget | None = None):
+    def __init__(self, parent: Union[QWidget, None] = None):
         super().__init__(parent)
 
         # Actions
@@ -119,7 +121,9 @@ class CRUDManager(QObject):
 
     def show_new_file_dialog(self, index: QModelIndex):
         modal = QInputDialog(
-            None, Qt.WindowType.Window | Qt.WindowType.WindowCloseButtonHint
+            None,
+            Qt.WindowFlags(Qt.WindowType.Window)
+            | Qt.WindowFlags(Qt.WindowType.WindowCloseButtonHint),
         )
         file_name, ok = modal.getText(
             None,
@@ -143,7 +147,8 @@ class CRUDManager(QObject):
             None,
             title,
             text,
-            QMessageBox.StandardButton.Yes | QMessageBox.StandardButton.Cancel,
+            QMessageBox.StandardButtons(QMessageBox.StandardButton.Yes)
+            | QMessageBox.StandardButtons(QMessageBox.StandardButton.Cancel),
             QMessageBox.StandardButton.Cancel,
         )
         if response == QMessageBox.StandardButton.Yes:
@@ -155,8 +160,10 @@ class CRUDManager(QObject):
     def show_add_row_dialog(self, type: ModelCreateType, index: QModelIndex):
         choice_box = QWidget()
         choice_box.setWindowFlags(
-            Qt.WindowType.Window | Qt.WindowType.WindowCloseButtonHint
+            Qt.WindowFlags(Qt.WindowType.Window)
+            | Qt.WindowFlags(Qt.WindowType.WindowCloseButtonHint)
         )
+
         layout = QVBoxLayout()
         choice_box.setLayout(layout)
 
@@ -187,7 +194,10 @@ class CRUDManager(QObject):
 
     def show_dict_entry_modal(self, type: ModelCreateType, index: QModelIndex):
         modal = QWidget()
-        modal.setWindowFlags(Qt.WindowType.Window | Qt.WindowType.WindowCloseButtonHint)
+        modal.setWindowFlags(
+            Qt.WindowFlags(Qt.WindowType.Window)
+            | Qt.WindowFlags(Qt.WindowType.WindowCloseButtonHint)
+        )
         layout = QVBoxLayout()
         modal.setLayout(layout)
 
@@ -218,7 +228,9 @@ class CRUDManager(QObject):
 
     def show_dict_item_modal(self, type: ModelCreateType, index: QModelIndex):
         modal = QInputDialog(
-            None, Qt.WindowType.Window | Qt.WindowType.WindowCloseButtonHint
+            None,
+            Qt.WindowFlags(Qt.WindowType.Window)
+            | Qt.WindowFlags(Qt.WindowType.WindowCloseButtonHint),
         )
         dict_name, ok = modal.getText(
             None,
@@ -242,7 +254,8 @@ class CRUDManager(QObject):
             None,
             "Clear dictionary",
             "Are you sure you want to clear this dictionary?",
-            QMessageBox.StandardButton.Yes | QMessageBox.StandardButton.Cancel,
+            QMessageBox.StandardButtons(QMessageBox.StandardButton.Yes)
+            | QMessageBox.StandardButtons(QMessageBox.StandardButton.Cancel),
             QMessageBox.StandardButton.Cancel,
         )
         if response == QMessageBox.StandardButton.Yes:
@@ -253,7 +266,8 @@ class CRUDManager(QObject):
             None,
             "Standardise boundary field",
             "Are you sure you want to standardise the boundary fields?",
-            QMessageBox.StandardButton.Yes | QMessageBox.StandardButton.Cancel,
+            QMessageBox.StandardButtons(QMessageBox.StandardButton.Yes)
+            | QMessageBox.StandardButtons(QMessageBox.StandardButton.Cancel),
             QMessageBox.StandardButton.Cancel,
         )
         if response == QMessageBox.StandardButton.Yes:

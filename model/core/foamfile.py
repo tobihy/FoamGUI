@@ -3,7 +3,7 @@ import re
 from pathlib import Path
 
 import pyparsing as pp
-from pyparsing import ParseException, ParseResults
+from pyparsing import ParseResults
 
 from model.core.dimensioned_scalar import DimensionedScalar
 from model.core.list import List
@@ -13,7 +13,6 @@ from model.core.parser import (
     ScalarValueParser,
     VectorValueParser,
 )
-from model.core.values import Scalar, Tensor, Value
 from model.custom_ordered_dict import CustomOrderedDict
 
 
@@ -158,14 +157,17 @@ class FoamFile:
         dictionary_object = pp.Suppress("{") + dictionary_entries + pp.Suppress("}")
 
         named_dictionary_object = pp.Group(
-            pp.Word(custom_alphanums) + dictionary_object
+            pp.Word(custom_alphanums) + pp.Suppress(pp.White()) + dictionary_object
         ) + pp.Suppress(pp.Optional(";"))
 
+        whitespace_delim = pp.White()
         list_object = (
             pp.Suppress("(")
-            + pp.ZeroOrMore(pp.Group(pp.DelimitedList(list_element, delim=pp.White())))
+            + pp.ZeroOrMore(
+                pp.Group(pp.DelimitedList(list_element, delim=whitespace_delim))
+            )
             + pp.Suppress(")")
-        ).set_parse_action(lambda toks: [List(toks.as_list()[0])] if toks else [[]])
+        ).set_parse_action(lambda toks: [List(toks.as_list())] if toks else List([]))
 
         # TODO add token identifier
         named_list_object = pp.Word(custom_alphanums) + list_object + pp.Suppress(";")
@@ -215,10 +217,10 @@ class FoamFile:
         )  # type: ignore
 
         list_element << (
-            pp.pyparsing_common.number
+            named_dictionary_object
             | list_object
+            | pp.pyparsing_common.number
             | pp.Word(custom_alphanums)
-            # | dictionary_object
         )  # type: ignore
 
         combined = dictionary_entries | named_list_object | named_dictionary_object

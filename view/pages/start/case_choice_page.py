@@ -1,13 +1,12 @@
 from typing import Callable
 
-from PyQt6.QtCore import pyqtSignal, pyqtSlot
-from PyQt6.QtWidgets import (
+from PyQt5.QtCore import pyqtSignal, pyqtSlot
+from PyQt5.QtWidgets import (
     QFrame,
     QHBoxLayout,
     QLabel,
     QStackedWidget,
     QVBoxLayout,
-    QWidget,
 )
 
 from env_var.environment import EnvironmentVariables

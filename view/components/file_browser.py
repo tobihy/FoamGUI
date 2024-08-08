@@ -1,10 +1,9 @@
 import os
-from enum import Enum
 from os.path import expanduser
-from typing import Callable
+from typing import Callable, Union
 
-from PyQt6.QtCore import Qt
-from PyQt6.QtWidgets import (
+from PyQt5.QtCore import Qt
+from PyQt5.QtWidgets import (
     QFileDialog,
     QHBoxLayout,
     QInputDialog,
@@ -25,7 +24,7 @@ class FileBrowserWidget(QWidget):
         description: str,
         isWrite: bool,
         callback: Callable,
-        curr_dir: str | None,
+        curr_dir: Union[str, None],
         stacked_widget: QStackedWidget,
         parent=None,
     ):

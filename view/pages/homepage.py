@@ -1,6 +1,6 @@
-from PyQt6.QtCore import QPoint, QSettings, QSize, Qt
-from PyQt6.QtGui import QAction
-from PyQt6.QtWidgets import (
+from PyQt5.QtCore import QPoint, QSettings, QSize, Qt, pyqtSlot
+from PyQt5.QtWidgets import (
+    QAction,
     QFrame,
     QMainWindow,
     QMenu,
@@ -80,8 +80,9 @@ class MainWindow(QMainWindow):
         self.setStatusBar(self.status_bar)
 
         # upon change in case directory, refresh main window
-        self.env_var.caseDirectoryChanged.connect(lambda: self.initUI)
+        self.env_var.caseDirectoryChanged.connect(self.initUI)
 
+    @pyqtSlot()
     def initUI(self):
         self.central_widget = QWidget(self)
         self.main_layout = QVBoxLayout()
@@ -176,7 +177,8 @@ class MainWindow(QMainWindow):
         close.setWindowTitle("Quit FoamGUI")
         close.setText("Are you sure you want to exit?")
         close.setStandardButtons(
-            QMessageBox.StandardButton.Yes | QMessageBox.StandardButton.Cancel
+            QMessageBox.StandardButtons(QMessageBox.StandardButton.Yes)
+            | QMessageBox.StandardButtons(QMessageBox.StandardButton.Cancel)
         )
         close = close.exec()
 

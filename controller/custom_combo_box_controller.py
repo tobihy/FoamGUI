@@ -1,5 +1,7 @@
-from PyQt6.QtCore import QObject, pyqtSignal
-from PyQt6.QtGui import QStandardItem
+from typing import Union
+
+from PyQt5.QtCore import QObject, pyqtSignal
+from PyQt5.QtGui import QStandardItem
 
 from model.model import ComboBoxModel
 from view.components.custom_combo_box import CustomComboBox
@@ -10,7 +12,7 @@ class CustomComboBoxController(QObject):
     combo_focus_lost = pyqtSignal()
 
     def __init__(
-        self, view: CustomComboBox, data: dict, current_choice: str | None = None
+        self, view: CustomComboBox, data: dict, current_choice: Union[str, None] = None
     ):
         super().__init__()
         self.view = view

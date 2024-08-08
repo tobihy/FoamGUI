@@ -1,5 +1,3 @@
-from collections import OrderedDict
-
 from model.core.element import Element
 from util.exceptions import DictionaryError
 

@@ -1,7 +1,7 @@
-from typing import Callable
+from typing import Callable, Union
 
-from PyQt6.QtCore import Qt
-from PyQt6.QtWidgets import (
+from PyQt5.QtCore import Qt
+from PyQt5.QtWidgets import (
     QHBoxLayout,
     QLabel,
     QPushButton,
@@ -23,7 +23,7 @@ class TemplateChoicePage(Page):
         env_var: EnvironmentVariables,
         stacked_widget: QStackedWidget,
         callback: Callable,
-        parent: QWidget | None = None,
+        parent: Union[QWidget, None] = None,
     ) -> None:
         super().__init__(env_var, stacked_widget, callback, parent)
 

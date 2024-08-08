@@ -1,9 +1,10 @@
-from typing import Any
+from typing import Any, List, Union
 
 
 class CustomOrderedDict(dict):
 
     def __init__(self, data=None) -> None:
+        print(data)
         super().__init__(data or {})
 
     def __eq__(self, other: Any) -> bool:
@@ -11,7 +12,7 @@ class CustomOrderedDict(dict):
             return False
         return list(self.items()) == list(other.items())
 
-    def rename_key(self, key_path: list[str], old_key: str, new_key: str):
+    def rename_key(self, key_path: List[str], old_key: str, new_key: str):
         """
         Renames a key in a nested CustomOrderedDict.
 
@@ -77,10 +78,10 @@ class CustomOrderedDict(dict):
     # O(n) insertions for new fields
     def insert(
         self,
-        key_path: list[str],
+        key_path: List[str],
         key: Any,
         value: Any,
-        insert_key: str | None = None,
+        insert_key: Union[str, None] = None,
         after: bool = False,
     ) -> None:
         target_dict = self.get_nested_value(key_path)
@@ -111,7 +112,7 @@ class CustomOrderedDict(dict):
         target_dict[key] = value
 
     def update_nested_value(
-        self, key_path: list[str], key: str, new_value: "str | CustomOrderedDict"
+        self, key_path: List[str], key: str, new_value: "str | CustomOrderedDict"
     ):
         target_dict = self.get_nested_value(key_path)
         if not isinstance(target_dict, CustomOrderedDict):
@@ -121,7 +122,7 @@ class CustomOrderedDict(dict):
         target_dict[key] = new_value
         print(f"Dictionary updated with key:value pair {key}:{new_value}.")
 
-    def remove(self, key_path: list[str], key: str):
+    def remove(self, key_path: List[str], key: str):
         target_dict = self.get_nested_value(key_path)
         if not isinstance(target_dict, CustomOrderedDict):
             raise ValueError("Expected dictionary, got string instead.")
@@ -129,7 +130,7 @@ class CustomOrderedDict(dict):
         target_dict.pop(key)
         print(f"Dictionary entry with key {key} deleted.")
 
-    def remove_all(self, key_path: list[str]):
+    def remove_all(self, key_path: List[str]):
         target_dict = self.get_nested_value(key_path)
         if not isinstance(target_dict, CustomOrderedDict):
             raise ValueError("Expected dictionary, got string instead.")
@@ -137,7 +138,7 @@ class CustomOrderedDict(dict):
         target_dict.clear()
         print(f"Dictionary entries cleared.")
 
-    def get_nested_value(self, key_path: list[str]) -> "CustomOrderedDict | str":
+    def get_nested_value(self, key_path: List[str]) -> "CustomOrderedDict | str":
         if not key_path:
             return self
         current_level, next_level = self, self

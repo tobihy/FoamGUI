@@ -1,4 +1,4 @@
-from PyQt6.QtWidgets import QPushButton
+from PyQt5.QtWidgets import QPushButton
 from typing import Callable
 
 

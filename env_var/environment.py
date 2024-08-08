@@ -1,4 +1,4 @@
-from PyQt6.QtCore import QObject, QSettings, pyqtSignal
+from PyQt5.QtCore import QObject, QSettings, pyqtSignal
 
 from util.constants import CaseDirMode
 

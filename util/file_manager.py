@@ -1,5 +1,5 @@
 from pathlib import Path
-from typing import List
+from typing import List, Union
 
 from model.file_writer import FileWriter
 from util.exceptions import (
@@ -49,7 +49,7 @@ def validate_existing_case(path: str):
     return True
 
 
-def create_subdirectories(case_path: str, template_path: str | None = None):
+def create_subdirectories(case_path: str, template_path: Union[str, None] = None):
     try:
         for dir in ["0", "system", "constant"]:
             path = Path(case_path, dir)
